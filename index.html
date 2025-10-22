@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="script.js" defer="defer"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -18,7 +19,7 @@
                 <h1>Formulário</h1>
                 <div class="mt-3">
                     <label for="cep" class="form-label">CEP</label>
-                    <input tyoe="text" id="cep" class="form-control" placeholder="CEP">
+                    <input type="text" id="cep" class="form-control" placeholder="CEP">
                 </div>
                 
                 <div class="row mt-3">
@@ -28,9 +29,10 @@
                     </div> <!-- .col-6-->
                     <div class="col-6">
                         <label for="numero" class="form-label">Número</label>
-                        <input type="number" id="numero" class="form-control" placeholder="Número">
+                        <input type="text" id="numero" class="form-control" placeholder="Número">
                     </div> <!-- .col-6-->
                 </div> <!-- .row -->
+                
                 
                 <div class="row mt-3">
                     <div class="col-6">
@@ -43,8 +45,56 @@
                     </div> <!-- .col-6-->
                 </div> <!-- .row -->
                 
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <label for="complemento" class="form-label">Complemento</label>
+                        <input type="text" id="complemento"class="form-control" placeholder="Complemento">
+                    </div> <!-- .col-6-->
+                    <div class="col-6">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select id="estado" name="estado" class="form-select">
+    <option value="AC">Acre</option>
+    <option value="AL">Alagoas</option>
+    <option value="AP">Amapá</option>
+    <option value="AM">Amazonas</option>
+    <option value="BA">Bahia</option>
+    <option value="CE">Ceará</option>
+    <option value="DF">Distrito Federal</option>
+    <option value="ES">Espírito Santo</option>
+    <option value="GO">Goiás</option>
+    <option value="MA">Maranhão</option>
+    <option value="MT">Mato Grosso</option>
+    <option value="MS">Mato Grosso do Sul</option>
+    <option value="MG">Minas Gerais</option>
+    <option value="PA">Pará</option>
+    <option value="PB">Paraíba</option>
+    <option value="PR">Paraná</option>
+    <option value="PE">Pernambuco</option>
+    <option value="PI">Piauí</option>
+    <option value="RJ">Rio de Janeiro</option>
+    <option value="RN">Rio Grande do Norte</option>
+    <option value="RS">Rio Grande do Sul</option>
+    <option value="RO">Rondônia</option>
+    <option value="RR">Roraima</option>
+    <option value="SC">Santa Catarina</option>
+    <option value="SP">São Paulo</option>
+    <option value="SE">Sergipe</option>
+    <option value="TO">Tocantins</option>
+    <option value="EX">Estrangeiro</option>
+</select>
+                    </div> <!-- .col-6-->
+                </div> <!-- .row -->
+                
             </div> <!-- .col-12 -->
         </div> <!-- .row -->
     </div> <!-- .container -->
+    
+    <!-- Cria uma spinner de 'Carregando' que ocupa todo o centro da tela e é exibida 
+    enquanto o JavaScript não retorna a resposta da API do CEP. -->
+    <div id="loadingOverlay" class="d-none justify-content-center align-items-center">
+        <div class="spinner-border" role="status">
+            <span class="sr-only"></span>
+        </div>
+    </div>
 </body>
 </html> 
