@@ -9,6 +9,10 @@ const txt_num = document.querySelector("#numero");
 const txt_cidade = document.querySelector("#cidade");
 const txt_bairro = document.querySelector("#bairro");
 const slt_estado = document.querySelector("#estado");
+const txt_complemento = document.querySelector("#complemento");
+
+// Procura pelo elemento que contém a mensagem de erro de validação do CEP.
+const err_cep = document.querySelector("#cep-erro");
 
 // Procura pelo elemento de spinner 'Carregando' no documento HTML
 const loadingOverlay = document.querySelector("#loadingOverlay");
@@ -18,6 +22,8 @@ const loadingOverlay = document.querySelector("#loadingOverlay");
 // ----------------------------------------------------------------------
 
 function consultaCEP() {
+    limpaCampos();
+    
     // Lê o CEP digitado no campo "CEP" da página HTML
     // para a variável 'cep'.
     let cep = txt_cep.value;
@@ -37,7 +43,6 @@ function consultaCEP() {
         // Remove o "-" (traço) da variável 'cep'.
         cep = cep.replace("-", "");
         
-        limpaCampos();
         
         // Exibe o spinner de 'Carregando' antes de chamar a API.
         loadingOverlay.classList.add('d-flex');
@@ -84,17 +89,26 @@ function consultaCEP() {
                 }
                 
             }
+        })
+        .catch (error => {
+            loadingOverlay.classList.add('d-none');
+            loadingOverlay.classList.remove('d-flex');
+            
+            err_cep.innerHTML = "Falha na consulta ao CEP.\
+                            <a href='#' onclick='consultaCEP()'>Tentar novamente?</a>";
+            txt_cep.classList.add("is-invalid");
         });
     }
 }
 
 function limpaCampos() {
-    txt_rua.disabled = "";
-    txt_cidade.disabled = "";
-    txt_bairro.disabled = "";
-    txt_num.value
-    slt_estado.disabled = "";
-
+    txt_rua.value = "";
+    txt_cidade.value = "";
+    txt_bairro.value = "";
+    txt_num.value = "";
+    txt_complemento.value = "";
+    slt_estado.value = "";
+    
     txt_rua.disabled = false;
     txt_cidade.disabled = false;
     txt_bairro.disabled = false;
